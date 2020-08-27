@@ -10,6 +10,8 @@ module Pod
       @pod_name = pod_name
       @pods_for_podfile = []
       @prefixes = []
+      @username = nil
+      @email = nil
       @message_bank = MessageBank.new(self)
     end
 
@@ -69,22 +71,8 @@ module Pod
 
     def run
       @message_bank.welcome_message
-
-      platform = self.ask_with_answers("What platform do you want to use?", ["iOS", "macOS"]).to_sym
-
-      case platform
-        when :macos
-          ConfigureMacOSSwift.perform(configurator: self)
-        when :ios
-          framework = self.ask_with_answers("What language do you want to use?", ["Swift", "ObjC"]).to_sym
-          case framework
-            when :swift
-              ConfigureSwift.perform(configurator: self)
-
-            when :objc
-              ConfigureIOS.perform(configurator: self)
-          end
-      end
+      
+      ConfigureSwift.perform(configurator: self)
 
       replace_variables_in_files
       clean_template_files
@@ -92,18 +80,12 @@ module Pod
       add_pods_to_podfile
       customise_prefix
       rename_classes_folder
-      ensure_carthage_compatibility
-      reinitialize_git_repo
       run_pod_install
 
       @message_bank.farewell_message
     end
 
     #----------------------------------------#
-
-    def ensure_carthage_compatibility
-      FileUtils.ln_s('Example/Pods/Pods.xcodeproj', '_Pods.xcodeproj')
-    end
 
     def run_pod_install
       puts "\nRunning " + "pod install".magenta + " on your new library."
@@ -165,7 +147,7 @@ module Pod
 
     def set_test_framework(test_type, extension, folder)
       content_path = "setup/test_examples/" + test_type + "." + extension
-      tests_path = "templates/" + folder + "/Example/Tests/Tests." + extension
+      tests_path = "Example/Tests/Tests." + extension
       tests = File.read tests_path
       tests.gsub!("${TEST_EXAMPLE}", File.read(content_path) )
       File.open(tests_path, "w") { |file| file.puts tests }
@@ -181,30 +163,20 @@ module Pod
       FileUtils.mv "Pod", @pod_name
     end
 
-    def reinitialize_git_repo
-      `rm -rf .git`
-      `git init`
-      `git add -A`
-    end
-
-    def validate_user_details
-        return (user_email.length > 0) && (user_name.length > 0)
-    end
-
     #----------------------------------------#
 
     def user_name
-      (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
-    end
-
-    def github_user_name
-      github_user_name = `security find-internet-password -s github.com | grep acct | sed 's/"acct"<blob>="//g' | sed 's/"//g'`.strip
-      is_valid = github_user_name.empty? or github_user_name.include? '@'
-      return is_valid ? nil : github_user_name
+      if @username == nil
+        @username = self.ask("Who is the pod author?")
+      end
+      return @username
     end
 
     def user_email
-      (ENV['GIT_COMMITTER_EMAIL'] || `git config user.email`).strip
+      if @email == nil
+        @email = self.ask("Wich is the pod author email?")
+      end
+      return @username
     end
 
     def year
