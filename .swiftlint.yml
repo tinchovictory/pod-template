@@ -1,6 +1,6 @@
 included: # paths to include during linting. `--path` is ignored if present.
-  - CVDTracer
-  - Example/CVDTracer
+  - ${POD_NAME}
+  - Example/${POD_NAME}
   - Example/Tests
 line_length: 400
 # they can set both implicitly with an array
