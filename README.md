@@ -13,6 +13,12 @@ $ bundle install
 ```
 
 Now we are ready to setup the pod structure:
+1. If you used this repo as template
+```
+$ ruby configure [POD_NAME]
+```
+
+2. If you just used a normal repo
 ```
 $ bundle exec pod lib create [POD_NAME] --template-url=git@github.com:Covitba/pod-template
 ```
