@@ -174,7 +174,7 @@ module Pod
 
     def user_email
       if @email == nil
-        @email = self.ask("Wich is the pod author email?")
+        @email = self.ask("Which is the pod author's email?")
       end
       return @username
     end
