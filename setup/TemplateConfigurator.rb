@@ -91,9 +91,7 @@ module Pod
       puts "\nRunning " + "pod install".magenta + " on your new library."
       puts ""
 
-      Dir.chdir("Example") do
-        system "pod install"
-      end
+      system "pod install"
 
       `git add Example/#{pod_name}.xcodeproj/project.pbxproj`
       `git commit -m "Initial commit"`
@@ -188,7 +186,7 @@ module Pod
     end
 
     def podfile_path
-      'Example/Podfile'
+      'Podfile'
     end
 
     #----------------------------------------#

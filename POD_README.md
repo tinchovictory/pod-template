@@ -1,28 +1,39 @@
-# ${POD_NAME}
+# ${POD_NAME} [![CI Status](https://img.shields.io/travis/${USER_NAME}/${REPO_NAME}.svg?style=flat)](https://travis-ci.org/${USER_NAME}/${REPO_NAME})
 
-[![CI Status](https://img.shields.io/travis/${USER_NAME}/${REPO_NAME}.svg?style=flat)](https://travis-ci.org/${USER_NAME}/${REPO_NAME})
-[![Version](https://img.shields.io/cocoapods/v/${POD_NAME}.svg?style=flat)](https://cocoapods.org/pods/${POD_NAME})
-[![License](https://img.shields.io/cocoapods/l/${POD_NAME}.svg?style=flat)](https://cocoapods.org/pods/${POD_NAME})
-[![Platform](https://img.shields.io/cocoapods/p/${POD_NAME}.svg?style=flat)](https://cocoapods.org/pods/${POD_NAME})
+## Description
 
-## Example
+${POD_NAME} is a library for ...
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## How to use it
 
-## Requirements
+${POD_NAME} is available on the private specs repo of Covitba
 
-## Installation
-
-${POD_NAME} is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
+    1. Add the private specs repo if you never used it before
+```ruby
+$ pod repo add CVD-Specs https://github.com/Covitba/ios-specs.git
+```
+    2. Add the specs repo to the `Podfile`
+```ruby
+source 'https://github.com/Covitba/ios-specs.git'
+```
+    3. Add the pod to the `Podfile`
 ```ruby
 pod '${POD_NAME}'
 ```
 
+## Example
+
+To run the example project, clone the repo, and run:
+```ruby
+$ bundle install
+$ bundle exec pod install
+$ open ${POD_NAME}.xcworkspace
+```
+from the root directory.
+
 ## Author
 
-${USER_NAME}, ${USER_EMAIL}
+${USER_NAME}
 
 ## License
 

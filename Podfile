@@ -1,3 +1,7 @@
+workspace '${POD_NAME}'
+project 'Example/${POD_NAME}'
+
+platform :ios, '12.0'
 use_frameworks!
 
 target '${POD_NAME}_Example' do
