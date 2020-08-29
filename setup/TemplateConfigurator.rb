@@ -81,6 +81,7 @@ module Pod
       customise_prefix
       rename_classes_folder
       run_pod_install
+      commit_template_setup
 
       @message_bank.farewell_message
     end
@@ -159,6 +160,11 @@ module Pod
 
     def rename_classes_folder
       FileUtils.mv "Pod", @pod_name
+    end
+
+    def commit_template_setup
+      `git add .`
+      `git commit -m "Remove template setup files"`
     end
 
     #----------------------------------------#
