@@ -13,3 +13,7 @@ target '${POD_NAME}_Example' do
     ${INCLUDED_PODS}
   end
 end
+
+pre_install do |installer|
+  `./scripts/install_git_hooks.sh`
+end
