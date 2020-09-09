@@ -5,10 +5,10 @@ Pod::Spec.new do |s|
 
   s.description      = 'A longer description of ${POD_NAME}'
 
-  s.homepage         = 'https://github.com/Covitba/${POD_NAME}'
+  s.homepage         = 'https://github.com/cobixs/${POD_NAME}'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = '${USER_NAME}'
-  s.source           = { :git => 'https://github.com/Covitba/${POD_NAME}.git', :tag => s.version.to_s }
+  s.author           = 'Cobixs'
+  s.source           = { :git => 'https://github.com/cobixs/${POD_NAME}.git', :tag => s.version.to_s }
 
   s.platform         = :ios, '12.0'
   s.requires_arc     = true
