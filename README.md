@@ -20,6 +20,6 @@ $ ruby configure [POD_NAME]
 
 2. If you just used a normal repo
 ```
-$ bundle exec pod lib create [POD_NAME] --template-url=git@github.com:Covitba/pod-template
+$ bundle exec pod lib create [POD_NAME] --template-url=git@github.com:cobixs/pod-template
 ```
 
